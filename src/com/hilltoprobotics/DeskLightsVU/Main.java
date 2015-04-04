@@ -39,6 +39,18 @@ public class Main {
 		    }
 		  }
 		  public static void main(String[] args) throws IOException, JSONException {
+		        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		        System.out.println("Enter DeskLights128 IP Address: ");
+		        System.out.println("0 for 192.168.0.220");
+		        System.out.println("1 for 192.168.1.220");
+		        System.out.print("IP: ");
+		        String s = br.readLine();
+		        if(s.equalsIgnoreCase("1")) {
+		        	s = "192.168.1.220";
+		        }
+		        if(s.equalsIgnoreCase("0")) {
+		        	s = "192.168.0.220";
+		        }
 			  String sendstuff = "";
 			  DecimalFormat df = new DecimalFormat("#");
 			  while(true) {
@@ -66,7 +78,7 @@ public class Main {
 				  
 				  ////udp request
 				  DatagramSocket clientSocket = new DatagramSocket();
-				  InetAddress IPAddress = InetAddress.getByName("192.168.2.220");
+				  InetAddress IPAddress = InetAddress.getByName(s);
 				  byte[] sendData = new byte[1024];
 				  sendData = sendstuff.getBytes();
 				  DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, IPAddress, 8888);
